@@ -67,7 +67,8 @@ class KeeperAI:
     def __init__(self, db):
         self.db = db
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        model_name = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+        self.model = genai.GenerativeModel(model_name)
 
     def _build_context(self):
         now = datetime.now(TZ)
